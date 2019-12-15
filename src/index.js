@@ -18,6 +18,7 @@ import * as CRTimer from './timer';
 		'users',
 		'cirkuleroj',
 		'resources',
+		'sekcioj',
 		'votes'
 	];
 
