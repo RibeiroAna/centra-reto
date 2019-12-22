@@ -1,12 +1,12 @@
 async function index (req, res, next) { // eslint-disable-line no-unused-vars
 
-   let stmt = CR.db.sekcioj.prepare('select * from sekcioj');
+   let stmt = CR.db.sections.prepare('select * from sections');
    const pageDataObj = {
-        sekcioj: []
+        sections: []
     };
     let rows = stmt.all();
 	for (let row of rows) {
-		pageDataObj.sekcioj.push({
+		pageDataObj.sections.push({
 			id: row.id,
 			name: row.name,
             acronym: row.acronym,
@@ -31,4 +31,4 @@ async function index (req, res, next) { // eslint-disable-line no-unused-vars
     await res.sendRegularPage('sekcioj/index', data);
 }
 
-export default listo;
+export default index;

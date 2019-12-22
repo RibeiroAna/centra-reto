@@ -27,7 +27,7 @@
 		"max": 20,
 		"time": 900
 	},
-	"sessionSecret": null,
+	"sessionSecret": "d",
 	"activationKeySize": 8,
 	"timers": {
 		"cirkuleroReminders": 900,

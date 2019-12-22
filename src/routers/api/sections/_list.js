@@ -1,15 +1,15 @@
 import * as CRApi from '..';
 
-async function sekcio_list (req, res, next) { // eslint-disable-line no-unused-vars
+async function section_list (req, res, next) { // eslint-disable-line no-unused-vars
 	/**
 	 * POST /list
-	 * Lists all sekcios
+	 * Lists all sections
 	 *
 	 * Login required
 	 * Initial setup required
 	 *
 	 * Permissions required:
-	 * sekcio.view
+	 * section.view
 	 *
 	 * Parameters:
 	 * See routers/api#performListQueryStatement
@@ -21,22 +21,22 @@ async function sekcio_list (req, res, next) { // eslint-disable-line no-unused-v
 	 * rows_total    (number)   The amount of rows in the table in total
 	 * rows_filtered (number)   The amount of rows in the table after filtering
 	 * data          (Object[]) The rows
-	 *   id                   (number)      The sekcio's id
-	 *   name                 (string)      The sekcio's display name
-	 *   description          (string)      The sekcio's description
-	 *   url                  (string)      The sekcio's URL
+	 *   id                   (number)      The section's id
+	 *   name                 (string)      The section's display name
+	 *   description          (string)      The section's description
+	 *   url                  (string)      The section's URL
 	 * 
 	 * Throws:
 	 * See routers/api#performListQueryStatement
 	 */
 	
-	if (!await req.requirePermissions('sekcio.view')) { return; }
+	if (!await req.requirePermissions('section.view')) { return; }
 
-	const table = 'sekcioj';
+	const table = 'sections';
 	const dbData = await CRApi.performListQueryStatement({
 		req: req,
 		res: res,
-		db: CR.db.sekcioj,
+		db: CR.db.sections,
 		table: table,
 		colsAllowed: [
             'id',
@@ -72,4 +72,4 @@ async function sekcio_list (req, res, next) { // eslint-disable-line no-unused-v
 	});
 }
 
-export default sekcio_list;
+export default section_list;

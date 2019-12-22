@@ -1,41 +1,41 @@
 $(function () {
-    const sekcioTable = $('#sekcio-list>tbody');
-    const sekcioj = pageData.sekcioj.sort(sortSekcioj);
+    const sectionTable = $('#section-list>tbody');
+    const sections = pageData.sections.sort(sortsections);
 
     var members = 0;
     var nomumisKomitatanoj = 0;
 
-    for (sekcio of sekcioj) {
-        sekcioTable.append(createSekcioRow(sekcio));
-        members += sekcio.komitatano? sekcio.members : 0; // nur konsideri membrojn de sekcioj kiuj havas komitatanojn
-        nomumisKomitatanoj += sekcio.komitatano? 1 : 0;
+    for (section of sections) {
+        sectionTable.append(createsectionRow(section));
+        members += section.komitatano? section.members : 0; // nur konsideri membrojn de sections kiuj havas komitatanojn
+        nomumisKomitatanoj += section.komitatano? 1 : 0;
     }
 
-    const sekciojBazajStatistikoj = $('#sekcioj-bazaj-statistikoj');
-    sekciojBazajStatistikoj[0].innerText = createStats(sekcioj.length, members, nomumisKomitatanoj);
+    const sectionsBazajstats = $('#sections-stats');
+    sectionsBazajstats[0].innerText = createStats(sections.length, members, nomumisKomitatanoj);
 });
 
 
 // helpers
-var createSekcioRow = function(sekcio) {
+var createsectionRow = function(section) {
     const tr = document.createElement('tr');
-    tr.appendChild(createNameCol(sekcio));
-    tr.appendChild(createMembersCol(sekcio)); 
-    tr.appendChild(createKomitatanojCol(sekcio));
-    if (sekcio.rajtasRedakti == true) {
-        tr.appendChild(createEditCol(sekcio));
+    tr.appendChild(createNameCol(section));
+    tr.appendChild(createMembersCol(section)); 
+    tr.appendChild(createKomitatanojCol(section));
+    if (section.rajtasRedakti == true) {
+        tr.appendChild(createEditCol(section));
     }
     return tr;
 }
 
-var createStats = function(lenSekcioj, members, nomumisKomitatanoj) {
-    const sekciojStr = 'En TEJO anas entute ' + lenSekcioj + ' sekcioj, ';
+var createStats = function(lensections, members, nomumisKomitatanoj) {
+    const sectionsStr = 'En TEJO anas entute ' + lensections + ' sections, ';
     const komitatanojStr = 'el kiuj ' + nomumisKomitatanoj + ' nomumis komitatanojn por la nuna komitato. ';
     const membersStr = 'Estas ĉirkaŭ ' + members + ' asociaj membroj en TEJO.';
-    return sekciojStr + komitatanojStr + membersStr;
+    return sectionsStr + komitatanojStr + membersStr;
 }
 
-var sortSekcioj = function (a, b) { // Sort ascending and by active representant
+var sortsections = function (a, b) { // Sort ascending and by active representant
     if (((a.komitatano == null) && (b.komitatano == null) ||
         ((a.komitatano != null) && (b.komitatano != null)))) {
         return a.name < b.name ? -1 : 1;
@@ -54,36 +54,36 @@ var createLink = function(link, text) {
     return anchor;
 }
 
-var createEditCol = function(sekcio) {
+var createEditCol = function(section) {
     const redaktiCol = document.createElement('td');
-    redaktiCol.appendChild(createLink(sekcio.acronym, 'Redakti informojn'));
+    redaktiCol.appendChild(createLink(section.acronym, 'Redakti informojn'));
     return redaktiCol;
 }
 
-var createNameCol = function(sekcio) {
-    const nameAcronym = sekcio.name + ' (' + sekcio.acronym + ')';
+var createNameCol = function(section) {
+    const nameAcronym = section.name + ' (' + section.acronym + ')';
     const nameCol = document.createElement('td');
-    if (sekcio.website) {
-        nameCol.appendChild(createLink(sekcio.website, nameAcronym));
+    if (section.website) {
+        nameCol.appendChild(createLink(section.website, nameAcronym));
     } else {
         nameCol.textContent = nameAcronym;
     }
     return nameCol;
 }
 
-var createMembersCol = function(sekcio) {
+var createMembersCol = function(section) {
     const membersCol = document.createElement('td');
-    membersCol.textContent = sekcio.members;
+    membersCol.textContent = section.members;
     return membersCol;
 }
 
-var createKomitatanojCol = function(sekcio) {
+var createKomitatanojCol = function(section) {
     const komitatanoCol = document.createElement('td');
-    if (sekcio.komitatano) {
-        const link = '/aktivuloj/' + sekcio.komitatano;
+    if (section.komitatano) {
+        const link = '/aktivuloj/' + section.komitatano;
         komitatanoCol.appendChild(createLink(link, 'Rigardi'));
-        if(sekcio.komitatano2) {
-            const link = '/aktivuloj/' + sekcio.komitatano2;
+        if(section.komitatano2) {
+            const link = '/aktivuloj/' + section.komitatano2;
             komitatanoCol.appendChild(document.createElement('br'));
             komitatanoCol.appendChild(createLink(link, 'Rigardi'));
         }

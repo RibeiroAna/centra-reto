@@ -3,7 +3,7 @@ import express from 'express';
 import { middleware } from '..';
 import { wrap } from '../..';
 
-import pageIndex from './_index.js';
+import pageIndex from './_index';
 
 /**
  * Sets up the router

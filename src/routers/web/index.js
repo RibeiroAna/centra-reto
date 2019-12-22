@@ -12,7 +12,7 @@ import routerAdministrado from './administrado';
 import routerAktivuloj from './aktivuloj';
 import routerCirkuleroj from './cirkuleroj';
 import routerResource from './resource';
-import routerSekcioj from './sekcioj';
+import routersections from './sections';
 import routerVochdonado from './vochdonado';
 
 import pageIndex from './_index';
@@ -43,7 +43,7 @@ export function init () {
 	router.use('/aktivuloj', routerAktivuloj());
 	router.use('/cirkuleroj', routerCirkuleroj());
 	router.use('/resursoj', routerResource());
-	router.use('/sekcioj', routerSekcioj());
+	router.use('/sekcioj', routersections());
 	router.use('/vochdonado', routerVochdonado());
 
 	// Pages
