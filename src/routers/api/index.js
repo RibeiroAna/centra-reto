@@ -1,8 +1,6 @@
 import express from 'express';
-
 import routerCirkuleroj from './cirkuleroj';
 import routerResource from './resource';
-import routersections from './sections';
 import routerUser from './user';
 import routerVotes from './votes';
 
@@ -22,7 +20,6 @@ export function init () {
 	// Routing
 	router.use('/cirkuleroj', routerCirkuleroj());
 	router.use('/resursoj', routerResource());
-	// router.use('/sections', routersections());
 	router.use('/user', routerUser());
 	router.use('/votes', routerVotes());
 
